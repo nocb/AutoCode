@@ -1,6 +1,6 @@
 // Decompiled by Jad v1.5.8e2. Copyright 2001 Pavel Kouznetsov.
 // Jad home page: http://kpdus.tripod.com/jad.html
-// Decompiler options: packimports(3) fieldsfirst ansi space 
+// Decompiler options: packimports(3) fieldsfirst ansi space
 // Source File Name:   TestRadModel.java
 
 package com.qdone.radmodel;
@@ -10,8 +10,8 @@ import java.sql.*;
 import java.util.Properties;
 
 // Referenced classes of package com.qdone.radmodel:
-//			Project, Entity, EntityBuilder, IBatisBuilder, 
-//			SpringBuilder, ActionBuilder, StrutsBuilder, ServiceBuilder, 
+//			Project, Entity, EntityBuilder, IBatisBuilder,
+//			SpringBuilder, ActionBuilder, StrutsBuilder, ServiceBuilder,
 //			InsertJspBuilder, SelectJspBuilder, ViewJspBuilder, UpdateJspBuilder
 
 public class TestRadModel
@@ -40,7 +40,7 @@ public class TestRadModel
 			password = props.getProperty("c3p0.password");
 			rootPackage = props.getProperty("autocoding.package");
 			tablesName = props.getProperty("autocoding.table.names");
-			tablesName=tablesName.toUpperCase();//表名不区分大小写
+//			tablesName=tablesName.toUpperCase();//表名不区分大小写
 			project = new Project(rootdir, rootPackage);
 			String prefix = props.getProperty("autocoding.prefix");
 			project.setPrefix(prefix);
@@ -59,6 +59,7 @@ public class TestRadModel
 	{
 		try {
 			Class.forName(jdbcDriver);
+			System.out.println("---"+jdbcUrl +"  "+userName +"  "+ password);
 			conn = DriverManager.getConnection(jdbcUrl, userName, password);
 			System.out.println("---------数据库连接成功--------------");
 			return true;
@@ -131,27 +132,27 @@ public class TestRadModel
 			ControllerBuilder controllerBuilder = new ControllerBuilder(project);
 			controllerBuilder.saveToFile();
 			System.out.println((new StringBuilder("生成【controller类】")).append(entity.getEntityName()).append("Controller.java -> 结束").toString());
-			
+
 			System.out.println("生成【select.jsp文件】select.html -> 开始");
 			SelectJspBuilder selectJspBuilder = new SelectJspBuilder(project);
 			selectJspBuilder.saveToFile();
 			System.out.println("生成【select.jsp文件】select.html -> 结束");
-			
+
 			System.out.println("生成【insert.jsp文件】insert.html -> 开始");
 			InsertJspBuilder insertJspBuilder = new InsertJspBuilder(project);
 			insertJspBuilder.saveToFile();
 			System.out.println("生成【insert.jsp文件】insert.html -> 结束");
-			
+
 			System.out.println("生成【update.jsp文件】update.html -> 开始");
 			UpdateJspBuilder updateJspBuilder = new UpdateJspBuilder(project);
 			updateJspBuilder.saveToFile();
 			System.out.println("生成【update.jsp文件】update.html -> 结束");
-			
+
 			/*System.out.println("生成【view.jsp文件】view.jsp -> 开始");
 			ViewJspBuilder viewJspBuilder = new ViewJspBuilder(project);
 			viewJspBuilder.saveToFile();
 			System.out.println("生成【view.jsp文件】view.jsp -> 结束");*/
-			
+
 
 			/*System.out.println((new StringBuilder("生成【Spring配置文件】sprint_")).append(entity.getEntityName()).append(".xml -> 开始").toString());
 			SpringBuilder springBuilder = new SpringBuilder(project);
